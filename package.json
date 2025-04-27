@@ -1,0 +1,22 @@
+{
+  "name": "procon-app",
+  "version": "1.0.0",
+  "description": "Privacy Analyzer + Stripe Checkout",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.4",
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^4.21.2",
+    "node-fetch": "^3.3.2",
+    "stripe": "^12.18.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
