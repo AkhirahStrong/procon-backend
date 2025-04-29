@@ -201,10 +201,33 @@ app.post("/analyze", async (req, res) => {
   }
 });
 
-// Cron job to keep server running
+// ✅ Health check endpoint for uptime monitoring or external pings
 app.get('/health', (req, res) => {
-    res.json({ status: 'ok' });
+    // Get how many seconds the server has been running
+    const uptime = process.uptime();
+  
+    // Get memory usage stats from the Node.js process
+    const memory = process.memoryUsage();
+  
+    // Send a lightweight status response
+    res.status(200).json({
+      // Basic status flag
+      status: 'ok',
+  
+      // Server uptime in seconds (rounded down to remove decimals)
+      uptime: `${Math.floor(uptime)}s`,
+  
+      // Current memory usage in MB
+      memory: {
+        rss: `${Math.round(memory.rss / 1024 / 1024)} MB`,        // Total memory usage
+        heapUsed: `${Math.round(memory.heapUsed / 1024 / 1024)} MB` // Heap memory actively used
+      },
+  
+      // Timestamp for when this health check was performed
+      timestamp: new Date().toISOString()
+    });
   });
+  
   
 
 // 🎯 Basic test route
