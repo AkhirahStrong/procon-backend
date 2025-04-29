@@ -201,6 +201,12 @@ app.post("/analyze", async (req, res) => {
   }
 });
 
+// Cron job to keep server running
+app.get('/health', (req, res) => {
+    res.json({ status: 'ok' });
+  });
+  
+
 // 🎯 Basic test route
 app.get("/", (req, res) => {
   res.send("🧠 Privacy GPT API is live with Email-Based Pro Access");
